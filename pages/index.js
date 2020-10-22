@@ -11,10 +11,12 @@ export default function Home({ tours }) {
     );
 
   return (
-    <main className='flex flex-wrap -m-4 container px-5 py-12 mx-auto'>
-      {tours.map((tour) => (
-        <Card key={tour.id} tour={tour} />
-      ))}
+    <main className='container px-5 py-12 mx-auto'>
+      <div className='flex flex-wrap -m-4'>
+        {tours.map((tour) => (
+          <Card key={tour.id} tour={tour} />
+        ))}
+      </div>
     </main>
   );
 }

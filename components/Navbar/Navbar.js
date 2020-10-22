@@ -3,9 +3,9 @@ import { Button, Avatar } from '@windmill/react-ui';
 
 const Navbar = () => {
   return (
-    <div className='flex justify-around items-center py-4 px-6 text-gray-300 border-b-2 border-gray-600'>
-      <Link href='/' className='tracking-widest font-bold select-none'>
-        BOOKING TOUR
+    <div className='flex justify-between items-center py-4 px-6 text-gray-300 border-b-2 border-gray-600'>
+      <Link href='/'>
+        <a className='tracking-widest font-bold select-none'>PH TOURS</a>
       </Link>
       <div>
         <img className='h-10 w-10' src='/aircraft.png' alt='icon' />
