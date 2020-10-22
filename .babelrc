@@ -4,7 +4,8 @@
       "@emotion/babel-preset-css-prop"
     ],
     "plugins": [
-      "babel-plugin-macros"
+      "babel-plugin-macros",
+      "inline-react-svg"
     ]
   }
   

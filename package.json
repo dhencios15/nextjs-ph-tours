@@ -3,21 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 2999",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 2999"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^10.0.27",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
+    "@windmill/react-ui": "^0.3.2",
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.20.0",
+    "dayjs": "^1.9.3",
+    "heroicons": "^0.4.2",
     "next": "9.5.5",
     "react": "17.0.0",
     "react-dom": "17.0.0",
     "twin.macro": "^1.11.0"
   },
   "devDependencies": {
+    "babel-plugin-inline-react-svg": "^1.1.1",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^1.9.5"
   },

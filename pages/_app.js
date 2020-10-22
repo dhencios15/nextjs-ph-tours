@@ -1,13 +1,24 @@
-import 'styles/index.css';
+import Head from 'next/head';
+import { Windmill } from '@windmill/react-ui';
 import tw from 'twin.macro';
 
-const AppWrapper = tw.main`min-h-screen bg-gray-900`;
+import 'styles/index.css';
+import Navbar from 'components/Navbar';
+
+const AppWrapper = tw.div`min-h-screen md:mt-2 bg-gray-800 md:rounded-lg overflow-hidden`;
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AppWrapper>
-      <Component {...pageProps} />
-    </AppWrapper>
+    <Windmill>
+      <AppWrapper>
+        <Head>
+          <title>Booking Tour</title>
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
+        <Navbar />
+        <Component {...pageProps} />
+      </AppWrapper>
+    </Windmill>
   );
 }
 
