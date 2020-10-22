@@ -1,30 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+1.ADD TAILWIND
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+```
+yarn add -D postcss-preset-env tailwindcss
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. ININT tailwind.config.js
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+npx tailwind init
+```
 
-## Learn More
+3. Inside your project root, create the file postcss.config.js and add the following:
 
-To learn more about Next.js, take a look at the following resources:
+```
+module.exports = {
+  plugins: ['tailwindcss', 'postcss-preset-env'],
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Create a CSS file inside your project. I’ve created the directory and file styles/index.css and added the following:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-## Deploy on Vercel
+5. Import Css to \_app.js
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+import '../styles/index.css'
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+6. ADD EMOTION / TW STYLED
+
+```
+yarn add @emotion/babel-preset-css-prop @emotion/core @emotion/styled @zeit/next-css twin.macro
+```
+
+then add this to package.json
+
+```
+ "babelMacros": {
+    "twin": {
+      "config": "tailwind.config.js",
+      "preset": "emotion",
+      "debugProp": true,
+      "debugPlugins": false,
+      "debug": false
+    }
+  }
+```
+
+create .babel.rc
+
+```
+{
+    "presets": [
+      "next/babel",
+      "@emotion/babel-preset-css-prop"
+    ],
+    "plugins": [
+      "babel-plugin-macros"
+    ]
+  }
+
+```
