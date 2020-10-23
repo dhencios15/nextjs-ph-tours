@@ -24,7 +24,7 @@ export default function Home({ tours }) {
 export const getStaticProps = async () => {
   const tours = await getAllTours();
   return {
-    // revalidate: 10,
+    revalidate: 10,
     props: { tours },
   };
 };
