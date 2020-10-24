@@ -16,16 +16,16 @@
     "axios": "^0.20.0",
     "dayjs": "^1.9.3",
     "heroicons": "^0.4.2",
+    "leaflet": "^1.7.1",
     "next": "9.5.5",
     "react": "17.0.0",
     "react-dom": "17.0.0",
-    "react-query": "^2.25.2",
+    "react-leaflet": "^2.8.0",
     "twin.macro": "^1.11.0"
   },
   "devDependencies": {
     "babel-plugin-inline-react-svg": "^1.1.1",
     "postcss-preset-env": "^6.7.0",
-    "react-query-devtools": "^2.6.0",
     "tailwindcss": "^1.9.5"
   },
   "babelMacros": {

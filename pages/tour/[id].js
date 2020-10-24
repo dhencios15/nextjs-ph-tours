@@ -1,8 +1,7 @@
 import dayjs from 'dayjs';
 import { Avatar } from '@windmill/react-ui';
-
 import { getTour } from 'services/tourServices';
-
+import dynamic from 'next/dynamic';
 import {
   LocationIcon,
   SpinnerIcon,
@@ -15,6 +14,10 @@ import {
 import Details from 'components/Card/Body/Details';
 
 const Tour = ({ tour }) => {
+  const MapContainer = dynamic(() => import('components/Map'), {
+    ssr: false,
+  });
+
   if (!tour)
     return (
       <div className='flex justify-center items-center mt-10'>
@@ -133,6 +136,10 @@ const Tour = ({ tour }) => {
           ></div>
         ))}
       </div>
+      <MapContainer
+        coordinates={tour.startLocation.coordinates}
+        locations={tour.locations}
+      />
     </div>
   );
 };
