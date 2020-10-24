@@ -5,7 +5,14 @@ module.exports = windmill({
     // removeDeprecatedGapUtilities: true,
     // purgeLayersByDefault: true,
   },
-  purge: { content: ['./components/**/*.js', './pages/**/*.js'] },
+  purge: {
+    content: [
+      './components/**/*.js',
+      './pages/**/*.js',
+      './pages/**/**/*.js',
+      './components/**/**/*.js',
+    ],
+  },
   theme: {
     extend: {
       height: (theme) => ({

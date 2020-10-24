@@ -1,4 +1,8 @@
-import Details from 'components/Card/Body/Details';
+import dayjs from 'dayjs';
+import { Avatar } from '@windmill/react-ui';
+
+import { getTour } from 'services/tourServices';
+
 import {
   LocationIcon,
   SpinnerIcon,
@@ -8,10 +12,7 @@ import {
   UserGroupIcon,
   StarIcon,
 } from 'icons';
-import { Avatar } from '@windmill/react-ui';
-
-import { getTour } from 'services/tourServices';
-import dayjs from 'dayjs';
+import Details from 'components/Card/Body/Details';
 
 const Tour = ({ tour }) => {
   if (!tour)
@@ -24,7 +25,7 @@ const Tour = ({ tour }) => {
     <div className='min-h-screen'>
       <section className='relative bg-gray-700 border-b-2 border-dashed border-opacity-25'>
         <div
-          className='h-screen/1.5 bg-center flex'
+          className='h-screen/1.5 bg-cover bg-center flex'
           style={{
             backgroundImage: `url(http://localhost:3000/img/tours/${tour.imageCover}`,
           }}
@@ -92,13 +93,15 @@ const Tour = ({ tour }) => {
             </h2>
             <nav className='flex flex-col justify-center sm:items-start sm:text-left text-center items-center -mb-1'>
               {tour.guides.map((guide) => (
-                <a className='mb-5'>
+                <a className='mb-5' key={guide._id}>
                   <Details
                     key={guide.id}
-                    details={`TOUR GUIDE - ${guide.name}`}
+                    details={`${
+                      guide.role === 'lead-guide' ? 'LEAD GUIDE' : 'TOUR GUIDE'
+                    } - ${guide.name}`}
                   >
                     <Avatar
-                      className='w-5 h-5 mr-2'
+                      className='w-5 h-5 mr-2 border border-blue-300 transform hover:scale-150'
                       src={`http://localhost:3000/img/users/${guide.photo}`}
                       alt='profile'
                     />
@@ -119,10 +122,16 @@ const Tour = ({ tour }) => {
           </div>
         </div>
       </div>
-      <div className='flex-row md:flex'>
-        <div className='w-full bg-gray-600'>1</div>
-        <div className='w-full bg-gray-400'>2</div>
-        <div className='w-full bg-gray-500'>3</div>
+      <div className='flex-row md:flex divide-y md:divide-x divide-gray-800'>
+        {tour.images.map((image, i) => (
+          <div
+            key={i}
+            className='h-screen/3 w-full bg-cover bg-center'
+            style={{
+              backgroundImage: `url(http://localhost:3000/img/tours/${image}`,
+            }}
+          ></div>
+        ))}
       </div>
     </div>
   );
