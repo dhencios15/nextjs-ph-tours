@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
     <Windmill>
       <AppWrapper>
         <Head>
-          <title>PH TOURS</title>
+          <title>Phtours</title>
           <link rel='icon' href='/favicon.ico' />
           <link
             rel='stylesheet'

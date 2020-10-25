@@ -14,6 +14,9 @@ module.exports = windmill({
     ],
   },
   theme: {
+    colors: {
+      'sky-blue': '#87b9e8',
+    },
     extend: {
       height: (theme) => ({
         'screen/2': '50vh',

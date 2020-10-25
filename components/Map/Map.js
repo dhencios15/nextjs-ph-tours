@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Map, TileLayer, Marker, Tooltip } from 'react-leaflet';
 
 const MarketToolTip = (day, description) => {
@@ -10,7 +10,8 @@ const MapContainer = ({ coordinates, locations }) => {
     <Map
       center={[coordinates[1], coordinates[0]]}
       zoom={6}
-      className='h-screen/3'
+      scrollWheelZoom={false}
+      className='h-screen/2'
     >
       <TileLayer
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

@@ -18,9 +18,11 @@
     "heroicons": "^0.4.2",
     "leaflet": "^1.7.1",
     "next": "9.5.5",
+    "next-seo": "^4.14.0",
     "react": "17.0.0",
     "react-dom": "17.0.0",
     "react-leaflet": "^2.8.0",
+    "react-rating-stars-component": "^2.2.0",
     "twin.macro": "^1.11.0"
   },
   "devDependencies": {
