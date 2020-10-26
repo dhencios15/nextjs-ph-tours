@@ -13,7 +13,6 @@ const DropDown = styled.div`
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(true);
-  console.log(user);
   const AuthLinks = (
     <div className='flex'>
       <Link href='/login'>
@@ -60,7 +59,13 @@ const Navbar = () => {
         >
           <ButtonWrap role='menuitem'>Account settings</ButtonWrap>
           <form>
-            <ButtonWrap onClick={logout} type='submit' role='menuitem'>
+            <ButtonWrap
+              onClick={() => {
+                logout(), setIsOpen(!isOpen);
+              }}
+              type='submit'
+              role='menuitem'
+            >
               Sign out
             </ButtonWrap>
           </form>
@@ -87,7 +92,7 @@ const Navbar = () => {
             <Avatar
               className='mr-2'
               size='small'
-              src='https://robohash.org/ddd?set=set4'
+              src={`http://localhost:3000/img/users/${user.photo}`}
               alt='profile'
             />
             <div className='flex text-gray-300 hover:text-gray-600'>

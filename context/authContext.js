@@ -1,10 +1,8 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
-// import Router, { useRouter } from 'next/router';
 
 import { loginUser, logoutUser, signUpUser } from 'services/authServices';
 import { getUser } from 'services/userServices';
-import { SpinnerIcon } from 'icons';
 import Api from 'services/Api';
 
 const AuthContext = createContext({});
@@ -12,6 +10,7 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function loadUserFromCookies() {
@@ -33,7 +32,10 @@ export const AuthProvider = ({ children }) => {
       Api.defaults.headers.Authorization = `Bearer ${token}`;
       const user = await getUser();
       setUser(user);
+      setError(null);
       window.location.pathname = '/';
+    } else {
+      setError('Invalid Username or Password');
     }
   };
 
@@ -43,6 +45,8 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     delete Api.defaults.headers.Authorization;
     window.location.pathname = '/login';
+    setLoading(false);
+    setError(null);
   };
 
   const signup = async (userInfo) => {
@@ -52,13 +56,24 @@ export const AuthProvider = ({ children }) => {
       Api.defaults.headers.Authorization = `Bearer ${token}`;
       const user = await getUser();
       setUser(user);
+      setError(null);
       window.location.pathname = '/';
+    } else {
+      setError('Invalid Singning up');
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated: !!user, user, login, loading, logout, signup }}
+      value={{
+        isAuthenticated: !!user,
+        user,
+        login,
+        loading,
+        logout,
+        signup,
+        error,
+      }}
     >
       {children}
     </AuthContext.Provider>
@@ -68,17 +83,8 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => useContext(AuthContext);
 
 export const ProtectRoute = ({ children }) => {
-  const { isAuthenticated, isLoading } = useAuth();
-  if (
-    isLoading ||
-    (!isAuthenticated && window.location.pathname !== '/login')
-  ) {
-    return (
-      <div className='flex justify-center items-center mt-10'>
-        <SpinnerIcon className='animate-spin text-gray-400 h-64 w-64' />
-      </div>
-    );
-  } else if (isAuthenticated && window.location.pathname === '/login') {
+  const { isAuthenticated } = useAuth();
+  if (isAuthenticated && window.location.pathname === '/login') {
     window.location.pathname = '/';
   }
   return children;

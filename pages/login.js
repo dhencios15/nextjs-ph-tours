@@ -6,7 +6,7 @@ import { InputField, loginSchema } from 'utils/authValidation';
 import { useAuth } from 'context/authContext';
 
 const Login = () => {
-  const { login, loading } = useAuth();
+  const { login, loading, error } = useAuth();
   const { register, handleSubmit, errors, reset } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(loginSchema),
@@ -24,6 +24,7 @@ const Login = () => {
           <h1 className=' text-gray-300 font-bold mb-5'>
             LOG INTO YOUR ACCOUNT
           </h1>
+          {error && <p className=' text-red-500 -mt-5 mb-2 text-sm'>{error}</p>}
           <div className='mb-4'>
             <label
               className='block text-gray-400 text-sm font-bold mb-2'
@@ -32,7 +33,7 @@ const Login = () => {
               Email address
             </label>
             <InputField
-              errors={errors.email?.message}
+              errors={errors.email?.message || error}
               id='email'
               type='text'
               placeholder='you@example.com'
@@ -51,7 +52,7 @@ const Login = () => {
               Password
             </label>
             <InputField
-              errors={errors.password?.message}
+              errors={errors.password?.message || error}
               id='password'
               type='password'
               placeholder='**********'
