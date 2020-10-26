@@ -7,6 +7,7 @@ import 'styles/index.css';
 
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
+import { AuthProvider, ProtectRoute } from 'context/authContext';
 
 const AppWrapper = tw.div`min-h-screen md:mt-2 bg-gray-800 md:rounded-t-lg overflow-hidden`;
 
@@ -30,8 +31,12 @@ function MyApp({ Component, pageProps }) {
             crossOrigin=''
           />
         </Head>
-        <Navbar />
-        <Component {...pageProps} />
+        <AuthProvider>
+          <ProtectRoute>
+            <Navbar />
+            <Component {...pageProps} />
+          </ProtectRoute>
+        </AuthProvider>
         <Footer />
       </AppWrapper>
     </Windmill>
