@@ -2,7 +2,7 @@ import { useAuth } from 'context/authContext';
 import Link from 'next/link';
 import React from 'react';
 
-const TourCallToAction = ({ days }) => {
+const TourCallToAction = ({ days, onBookedTour }) => {
   const { isAuthenticated } = useAuth();
 
   return (
@@ -18,11 +18,12 @@ const TourCallToAction = ({ days }) => {
             </h3>
           </div>
           {isAuthenticated ? (
-            <Link href='/' passHref>
-              <a className='flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0'>
-                BOOK TOUR NOW
-              </a>
-            </Link>
+            <button
+              onClick={() => onBookedTour()}
+              className='flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0'
+            >
+              BOOK TOUR NOW
+            </button>
           ) : (
             <Link href='/login' passHref>
               <a className='flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded mt-10 sm:mt-0'>

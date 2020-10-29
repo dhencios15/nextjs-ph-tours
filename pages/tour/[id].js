@@ -1,7 +1,8 @@
 import { Fragment } from 'react';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
 import { getTour } from 'services/tourServices';
 import { SpinnerIcon } from 'icons';
 import {
@@ -11,6 +12,7 @@ import {
   TourImages,
   TourReviews,
 } from 'components/Tour';
+import { bookTour } from 'services/bookServices';
 
 const Tour = ({ tour }) => {
   const MapContainer = dynamic(() => import('components/Map'), {
@@ -23,6 +25,10 @@ const Tour = ({ tour }) => {
         <SpinnerIcon className='animate-spin text-gray-400 h-64 w-64' />
       </div>
     );
+
+  const handleBookedTour = async () => {
+    await bookTour(tour.id);
+  };
 
   return (
     <Fragment>
@@ -39,7 +45,10 @@ const Tour = ({ tour }) => {
           locations={tour.locations}
         />
         <TourReviews reviews={tour.reviews} />
-        <TourCallToAction days={tour.duration} />
+        <TourCallToAction
+          days={tour.duration}
+          onBookedTour={handleBookedTour}
+        />
       </div>
     </Fragment>
   );
