@@ -38,7 +38,7 @@ const Login = () => {
               type='text'
               placeholder='you@example.com'
               name='email'
-              value='user@test.com'
+              defaultValue='user@test.com'
               ref={register}
             />
             <p className='text-red-500 text-xs italic'>
@@ -58,7 +58,7 @@ const Login = () => {
               type='password'
               placeholder='**********'
               name='password'
-              value='test1234'
+              defaultValue='test1234'
               ref={register}
             />
             <p className='text-red-500 text-xs italic'>

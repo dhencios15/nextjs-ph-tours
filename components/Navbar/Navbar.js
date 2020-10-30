@@ -13,6 +13,12 @@ const DropDown = styled.div`
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(true);
+
+  const handleLogoutUser = async () => {
+    await logout();
+    setIsOpen(!isOpen);
+  };
+
   const AuthLinks = (
     <div className='flex'>
       <Link href='/login'>
@@ -60,9 +66,7 @@ const Navbar = () => {
           <ButtonWrap role='menuitem'>Account settings</ButtonWrap>
           <form>
             <ButtonWrap
-              onClick={() => {
-                logout(), setIsOpen(!isOpen);
-              }}
+              onClick={handleLogoutUser}
               type='submit'
               role='menuitem'
             >
