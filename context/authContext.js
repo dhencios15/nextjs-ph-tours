@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await logoutUser();
-    // Cookies.remove('token');
+    Cookies.remove('token');
     setUser(null);
     delete Api.defaults.headers.Authorization;
     window.location.pathname = '/login';
