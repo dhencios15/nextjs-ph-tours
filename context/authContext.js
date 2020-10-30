@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (emailAndPassword) => {
     const token = await loginUser(emailAndPassword);
     if (token) {
-      // Cookies.set('token', token, { expires: 60 });
+      Cookies.set('token', token, { expires: 60 });
       Api.defaults.headers.Authorization = `Bearer ${token}`;
       const user = await getUser();
       setUser(user);
