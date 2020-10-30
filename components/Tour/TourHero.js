@@ -7,7 +7,7 @@ const TourHero = ({ tour }) => {
       <div
         className='h-screen/1.5 bg-cover bg-center flex'
         style={{
-          backgroundImage: `url(http://localhost:3000/img/tours/${tour.imageCover}`,
+          backgroundImage: `url(${process.env.PROD_URL}/img/tours/${tour.imageCover}`,
         }}
       >
         <div className='relative container mx-auto p-4 flex justify-center items-center z-10'>

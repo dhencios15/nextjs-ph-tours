@@ -92,11 +92,11 @@ const Navbar = () => {
             <Avatar
               className='mr-2'
               size='small'
-              src={`http://localhost:3000/img/users/${user.photo}`}
+              src={`${process.env.PROD_URL}/img/users/${user.photo}`}
               alt='profile'
             />
             <div className='flex text-gray-300 hover:text-gray-600'>
-              <span>{user.name}</span>
+              <span>{user.name.toUpperCase()}</span>
               <svg
                 className='-mr-1 ml-2 h-5 w-5'
                 xmlns='http://www.w3.org/2000/svg'

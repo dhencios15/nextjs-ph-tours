@@ -55,7 +55,7 @@ const TourDescription = ({ tour }) => {
                 >
                   <Avatar
                     className='w-5 h-5 mr-2 border border-blue-300 transform hover:scale-150'
-                    src={`http://localhost:3000/img/users/${guide.photo}`}
+                    src={`${process.env.PROD_URL}/img/users/${guide.photo}`}
                     alt='profile'
                   />
                 </Details>

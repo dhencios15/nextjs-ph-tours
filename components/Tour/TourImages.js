@@ -6,7 +6,7 @@ const TourImages = ({ images }) => {
           key={i}
           className='h-screen/3 w-full bg-cover bg-center'
           style={{
-            backgroundImage: `url(http://localhost:3000/img/tours/${image}`,
+            backgroundImage: `url(${process.env.PROD_URL}/img/tours/${image}`,
           }}
         ></div>
       ))}

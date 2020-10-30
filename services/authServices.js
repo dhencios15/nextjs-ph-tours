@@ -2,7 +2,7 @@ import api from './Api';
 
 const loginUser = async (emailAndPassword) => {
   try {
-    const res = await api.post('users/login', emailAndPassword);
+    const res = await api.post('/users/login', emailAndPassword);
     return res.data.token;
   } catch (error) {
     console.log(error.res);
@@ -12,7 +12,7 @@ const loginUser = async (emailAndPassword) => {
 
 const signUpUser = async (userInfo) => {
   try {
-    const res = await api.post('users/signup', { ...userInfo });
+    const res = await api.post('/users/signup', { ...userInfo });
     return res.data.token;
   } catch (error) {
     return error.res;
@@ -21,7 +21,7 @@ const signUpUser = async (userInfo) => {
 
 const logoutUser = async () => {
   try {
-    const res = await api.get('users/logout');
+    const res = await api.get('/users/logout');
     return res.data.status;
   } catch (error) {
     return error.res;
