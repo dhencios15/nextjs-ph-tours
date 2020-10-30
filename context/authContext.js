@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (emailAndPassword) => {
     const token = await loginUser(emailAndPassword);
     if (token) {
-      Cookies.set('token', token, { expires: 60 });
+      // Cookies.set('token', token, { expires: 60 });
       Api.defaults.headers.Authorization = `Bearer ${token}`;
       const user = await getUser();
       setUser(user);
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await logoutUser();
-    Cookies.remove('token');
+    // Cookies.remove('token');
     setUser(null);
     delete Api.defaults.headers.Authorization;
     window.location.pathname = '/login';
